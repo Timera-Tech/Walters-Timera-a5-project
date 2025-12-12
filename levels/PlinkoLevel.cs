@@ -7,12 +7,12 @@ public partial class PlinkoLevel : Node2D
 	// this is the value of the current round's score
 	public int Score = 0;
 
-	public int Timer = 10;
+    public int Timer = 10;
 
-	[Export]
-	public Label TimerLabel;
+    [Export]
+	public Label TimerValue;
 
-	[Export]
+    [Export]
 	public Label ScoreValue;
 
 	[Export]
@@ -40,8 +40,8 @@ public partial class PlinkoLevel : Node2D
 	public override void _Ready()
 	{
 		RespawnMessage.Hide();
-
 		InitialPosition = FirstPlayer.Position;
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,7 +51,10 @@ public partial class PlinkoLevel : Node2D
 		ScoreValue.Text = $"Score: {Score}";
 		RespawnMessage.Visible = EnableRespawn;
 
-		// spawn a new player
+        // write the timer to the UI
+        TimerValue.Text = $"Time: {Timer}";
+
+        // spawn a new player
         if (Input.IsActionJustPressed("drop_disk") && EnableRespawn)
         {
 			// spawning a new player here is OK because physics step hasn't run
