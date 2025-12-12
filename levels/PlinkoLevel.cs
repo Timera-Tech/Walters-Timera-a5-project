@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class PlinkoLevel : Node2D
 {
@@ -62,9 +63,18 @@ public partial class PlinkoLevel : Node2D
 
 			EnableRespawn = false;
         }
-    }
 
-	void SpawnNewPlayer()
+		if (Timer == 0 && ScoreValue < 10000)
+        {
+			Console.WriteLine("You won!");
+        }
+		if (Timer == 0 && ScoreValue )
+		{
+			Console.WriteLine("You lost!");
+        }
+
+
+        void SpawnNewPlayer()
     {
 		Player newPlayer = PlayerScene.Instantiate<Player>();
 		newPlayer.Position = InitialPosition;
@@ -75,6 +85,7 @@ public partial class PlinkoLevel : Node2D
         PlayerDisks.AddChild(newPlayer);
     }
 
+	public override void 
 	// remember: IncreaseScore() only gets called when the player body enters the "Bucket"
 	public void IncreaseScore(int scoreIncrease)
 	{
